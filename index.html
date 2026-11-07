@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ห้องทดลองคณิตศาสตร์ ม.1 | อัตราส่วน สัดส่วน ร้อยละ</title>
+<style>
+:root{--navy:#17345c;--blue:#2878c8;--sky:#edf6ff;--orange:#ffb44d;--green:#23865f;--ink:#243247;--muted:#61738a;--line:#d9e5f0}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(135deg,#edf6ff,#fff8ed);color:var(--ink);line-height:1.65}
+header{background:linear-gradient(120deg,#17345c,#2878c8);color:#fff;text-align:center;padding:28px 16px}header h1{font-size:clamp(24px,4vw,38px);margin:0}header p{margin:6px 0 0}
+main{max-width:1050px;margin:22px auto;padding:0 14px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px;margin:14px 0;box-shadow:0 7px 22px #17345c0c}
+h2{color:var(--navy);margin:0 0 8px;font-size:23px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.tab{flex:1;min-width:145px;border:0;border-radius:12px;padding:12px 10px;background:#fff;color:var(--navy);font-weight:bold;cursor:pointer}.tab.active{background:var(--orange);color:#382500}
+.panel{display:none}.panel.active{display:block}.visual{background:#f1f7ff;border-radius:14px;padding:15px;min-height:130px}
+label{display:block;font-weight:bold;margin:10px 0 4px}input[type=range]{display:block;width:100%;height:30px;accent-color:var(--blue);cursor:pointer;touch-action:pan-y}
+.big{font-size:clamp(25px,4vw,35px);font-weight:bold;color:var(--blue);line-height:1.45}.muted{font-size:14px;color:var(--muted)}
+.bar{display:flex;width:100%;height:28px;overflow:hidden;border-radius:8px;background:#e3eaf1;margin:10px 0}.bar span{height:100%;display:block;transition:width .15s linear}
+.action{border:0;border-radius:10px;background:var(--blue);color:#fff;padding:10px 15px;font-weight:bold;cursor:pointer;margin:5px 5px 5px 0}.secondary{background:#e8f1fb;color:var(--navy)}
+.result{color:var(--green);font-weight:bold;min-height:26px}.question{padding:14px 0;border-top:1px solid var(--line)}.question p{font-weight:bold;margin:0 0 8px}
+.option{display:block;background:#f3f7fb;padding:9px 12px;border-radius:9px;margin:7px 0;cursor:pointer}.option input{margin-right:8px}
+.feedback{display:none;padding:10px;border-radius:9px;margin-top:8px}.good{display:block;background:#e8f8f0;color:#176b4e}.bad{display:block;background:#fff0e9;color:#a44720}
+.answer-key{background:#fff9ed;border-radius:13px;padding:14px}footer{text-align:center;padding:22px;color:var(--muted);font-size:13px}
+@media(max-width:600px){.card{padding:15px}.tab{min-width:calc(50% - 8px)}}
+</style>
+</head>
+<body>
+<header><h1>🔎 ห้องทดลองคณิตศาสตร์</h1><p>อัตราส่วน • สัดส่วน • ร้อยละ | ชั้นมัธยมศึกษาปีที่ 1</p></header>
+<main>
+<section class="card">
+<h2>🎯 เป้าหมายการเรียนรู้</h2>
+<div class="grid">
+<div>🧪 <b>ทดลอง</b><br>ปรับจำนวนและสังเกตการเปลี่ยนแปลงของอัตราส่วน</div>
+<div>👀 <b>สังเกต</b><br>เปรียบเทียบความสัมพันธ์ของจำนวนและร้อยละ</div>
+<div>🧠 <b>วิเคราะห์</b><br>ใช้สัดส่วนแก้ปัญหาในสถานการณ์ใกล้ตัว</div>
+</div>
+</section>
+
+<nav class="tabs" aria-label="เลือกกิจกรรม">
+<button type="button" class="tab active" data-target="ratio">กิจกรรม 1 อัตราส่วน</button>
+<button type="button" class="tab" data-target="proportion">กิจกรรม 2 สัดส่วน</button>
+<button type="button" class="tab" data-target="percent">กิจกรรม 3 ร้อยละ</button>
+<button type="button" class="tab" data-target="quiz">แบบทดสอบท้ายกิจกรรม</button>
+</nav>
+
+<section id="ratio" class="panel active">
+<div class="card">
+<h2>กิจกรรม 1 : ผสมน้ำผลไม้ 🥤</h2>
+<p>เลื่อนตัวปรับเพื่อเปลี่ยนจำนวนน้ำส้มและน้ำเปล่า แล้วสังเกตว่าอัตราส่วนและปริมาณของส่วนผสมเปลี่ยนไปอย่างไร</p>
+<div class="grid">
+<div>
+<label for="juice">น้ำส้ม: <span id="juiceVal">2</span> ส่วน</label>
+<input id="juice" type="range" min="1" max="10" step="1" value="2">
+<label for="water">น้ำเปล่า: <span id="waterVal">3</span> ส่วน</label>
+<input id="water" type="range" min="1" max="10" step="1" value="3">
+<div class="big">อัตราส่วน <span id="ratioText">2 : 3</span></div>
+<div id="ratioExplain" class="muted">น้ำส้ม 2 ส่วน ต่อน้ำเปล่า 3 ส่วน</div>
+</div>
+<div class="visual">
+<b>สัดส่วนของส่วนผสม</b>
+<div class="bar"><span id="juiceBar" style="width:40%;background:#f5a623"></span><span id="waterBar" style="width:60%;background:#65b7e8"></span></div>
+<div>🟠 น้ำส้ม <b id="juicePct">40.0%</b></div><div>🔵 น้ำเปล่า <b id="waterPct">60.0%</b></div>
+<p class="muted">แถบสีจะแสดงสัดส่วนของน้ำส้มและน้ำเปล่าจากปริมาณรวม</p>
+</div>
+</div>
+<div class="answer-key"><b>ชวนคิด:</b> ถ้าเพิ่มน้ำส้มและน้ำเปล่าจาก 2 และ 3 ส่วน เป็น 4 และ 6 ส่วน อัตราส่วนเปลี่ยนหรือไม่?
+<br><button type="button" class="action secondary" id="tryRatio">ทดลอง 4 : 6</button>
+<button type="button" class="action secondary" id="resetRatio">เริ่มใหม่ 2 : 3</button>
+<div id="ratioHint" class="result" aria-live="polite"></div></div>
+</div></section>
+
+<section id="proportion" class="panel">
+<div class="card">
+<h2>กิจกรรม 2 : ขยายสูตรคุกกี้ 🍪</h2>
+<p>สูตรคุกกี้ 1 ชุดใช้แป้ง 2 ถ้วย และน้ำตาล 1 ถ้วย ทดลองเพิ่มจำนวนชุด โดยคูณวัตถุดิบทั้งสองชนิดด้วยจำนวนเท่าที่เท่ากัน</p>
+<div class="grid">
+<div>
+<label for="factor">จำนวนเท่าของสูตรเดิม: <span id="factorVal">1</span> เท่า</label>
+<input id="factor" type="range" min="1" max="8" step="1" value="1">
+<div class="big" id="flourOut">แป้ง 2 ถ้วย</div><div class="big" id="sugarOut">น้ำตาล 1 ถ้วย</div>
+<p class="muted">อัตราส่วนแป้ง : น้ำตาล ยังคงเป็น 2 : 1</p>
+</div>
+<div class="visual">
+<b>เปรียบเทียบสัดส่วนวัตถุดิบ</b>
+<div style="margin-top:12px">แป้ง<div class="bar"><span id="flourBar" style="width:66.67%;background:#d69a55"></span></div></div>
+<div>น้ำตาล<div class="bar"><span id="sugarBar" style="width:33.33%;background:#9b83d5"></span></div></div>
+<div class="result" id="propNote">สูตรเดิม 1 เท่า</div>
+</div>
+</div>
+<div class="answer-key"><b>สังเกต:</b> เมื่อเพิ่มสูตรเป็น 2 เท่า แป้งและน้ำตาลเพิ่มขึ้นกี่เท่า? อัตราส่วนเดิมยังคงเท่าเดิมหรือไม่?
+<div id="propHint" class="result" aria-live="polite"></div></div>
+</div></section>
+
+<section id="percent" class="panel">
+<div class="card">
+<h2>กิจกรรม 3 : นักชอปฉลาดคิด 🛍️</h2>
+<p>ทดลองเปลี่ยนราคาสินค้าและเปอร์เซ็นต์ส่วนลด แล้วคำนวณเงินที่ต้องจ่าย</p>
+<div class="grid">
+<div>
+<label for="price">ราคาสินค้า: <span id="priceVal">500</span> บาท</label>
+<input id="price" type="range" min="100" max="2000" step="50" value="500">
+<label for="discount">ส่วนลด: <span id="discountVal">20</span>%</label>
+<input id="discount" type="range" min="0" max="90" step="5" value="20">
+</div>
+<div class="visual">
+<div>เงินส่วนลด</div><div class="big" id="saving">100 บาท</div>
+<div>ราคาที่ต้องจ่าย</div><div class="big" id="pay">400 บาท</div>
+<div class="bar"><span id="discountBar" style="width:20%;background:#f0a34a"></span><span id="payBar" style="width:80%;background:#48ae8a"></span></div>
+<div class="muted">ร้อยละ หมายถึง จำนวนต่อ 100</div>
+</div>
+</div>
+<div class="answer-key"><b>สูตรคำนวณ</b><br>เงินส่วนลด = (เปอร์เซ็นต์ส่วนลด ÷ 100) × ราคาเดิม<br>ราคาที่ต้องจ่าย = ราคาเดิม − เงินส่วนลด
+<div id="percentHint" class="result" aria-live="polite"></div></div>
+</div></section>
+
+<section id="quiz" class="panel">
+<div class="card">
+<h2>📝 แบบทดสอบท้ายกิจกรรม</h2><p>เลือกคำตอบให้ครบทั้ง 3 ข้อ จากนั้นกดปุ่ม “ตรวจคำตอบ”</p>
+<form id="quizForm">
+<div class="question"><p>ข้อ 1 น้ำสีแดง 4 แก้ว ผสมน้ำสีขาว 6 แก้ว อัตราส่วนอย่างต่ำของน้ำสีแดงต่อน้ำสีขาวคือข้อใด?</p>
+<label class="option"><input type="radio" name="q1" value="a"> 4 : 6</label><label class="option"><input type="radio" name="q1" value="b"> 2 : 3</label><label class="option"><input type="radio" name="q1" value="c"> 3 : 2</label><div id="f1" class="feedback"></div></div>
+<div class="question"><p>ข้อ 2 ถ้า 3 : 5 = 6 : □ จำนวนที่หายไปคือเท่าใด?</p>
+<label class="option"><input type="radio" name="q2" value="a"> 8</label><label class="option"><input type="radio" name="q2" value="b"> 10</label><label class="option"><input type="radio" name="q2" value="c"> 12</label><div id="f2" class="feedback"></div></div>
+<div class="question"><p>ข้อ 3 เสื้อราคา 800 บาท ลดราคา 25% ต้องจ่ายเงินกี่บาท?</p>
+<label class="option"><input type="radio" name="q3" value="a"> 600 บาท</label><label class="option"><input type="radio" name="q3" value="b"> 650 บาท</label><label class="option"><input type="radio" name="q3" value="c"> 700 บาท</label><div id="f3" class="feedback"></div></div>
+<button type="submit" class="action">ตรวจคำตอบ</button><button type="reset" class="action secondary" id="resetQuiz">เริ่มทำใหม่</button>
+<div class="big" id="score" aria-live="polite"></div>
+</form>
+</div>
+<div class="card"><h2>เฉลยและวิธีคิด</h2><ol>
+<li><b>ข้อ 1 ตอบ 2 : 3</b> — หารทั้ง 4 และ 6 ด้วย 2 จะได้ 2 : 3</li>
+<li><b>ข้อ 2 ตอบ 10</b> — คูณไขว้ 3 × 10 = 5 × 6 ดังนั้นจำนวนที่หายไปคือ 10</li>
+<li><b>ข้อ 3 ตอบ 600 บาท</b> — ส่วนลด = 25/100 × 800 = 200 บาท จึงจ่าย 800 − 200 = 600 บาท</li>
+</ol></div>
+</section>
+</main>
+<footer>สื่อการเรียนรู้คณิตศาสตร์แบบโต้ตอบ • อัตราส่วน สัดส่วน และร้อยละ • ม.1</footer>
+
+<script>
+(function(){
+'use strict';
+const el = id => document.getElementById(id);
+function showPanel(target){
+ document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.target===target));
+ document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===target));
+}
+document.querySelectorAll('.tab').forEach(button=>{
+ button.addEventListener('click',()=>showPanel(button.dataset.target));
+});
+
+function updateRatio(){
+ const j=Number(el('juice').value), w=Number(el('water').value), total=j+w;
+ el('juiceVal').textContent=String(j); el('waterVal').textContent=String(w);
+ el('ratioText').textContent=j+' : '+w;
+ el('ratioExplain').textContent='น้ำส้ม '+j+' ส่วน ต่อน้ำเปล่า '+w+' ส่วน';
+ const jp=j/total*100, wp=w/total*100;
+ el('juiceBar').style.width=jp+'%'; el('waterBar').style.width=wp+'%';
+ el('juicePct').textContent=jp.toFixed(1)+'%'; el('waterPct').textContent=wp.toFixed(1)+'%';
+ el('ratioHint').textContent='';
+}
+el('juice').addEventListener('input',updateRatio); el('water').addEventListener('input',updateRatio);
+el('tryRatio').addEventListener('click',()=>{el('juice').value='4';el('water').value='6';updateRatio();el('ratioHint').textContent='อัตราส่วน 4 : 6 ย่อได้เป็น 2 : 3 จึงเป็นอัตราส่วนที่เท่ากัน';});
+el('resetRatio').addEventListener('click',()=>{el('juice').value='2';el('water').value='3';updateRatio();});
+updateRatio();
+
+function updateProportion(){
+ const f=Number(el('factor').value);
+ el('factorVal').textContent=String(f);el('flourOut').textContent='แป้ง '+(2*f)+' ถ้วย';el('sugarOut').textContent='น้ำตาล '+f+' ถ้วย';
+ el('flourBar').style.width=(2/3*100)+'%';el('sugarBar').style.width=(1/3*100)+'%';
+ el('propNote').textContent='ใช้วัตถุดิบเพิ่มเป็น '+f+' เท่าของสูตรเดิม';
+ el('propHint').textContent=f===1?'นี่คือปริมาณวัตถุดิบของสูตรเดิม':('ทั้งแป้งและน้ำตาลเพิ่มขึ้น '+f+' เท่า โดยอัตราส่วนยังคงเป็น 2 : 1');
+}
+el('factor').addEventListener('input',updateProportion);updateProportion();
+
+function updatePercent(){
+ const p=Number(el('price').value),d=Number(el('discount').value),saving=p*d/100,pay=p-saving;
+ el('priceVal').textContent=p.toLocaleString('th-TH');el('discountVal').textContent=String(d);
+ el('saving').textContent=saving.toLocaleString('th-TH')+' บาท';el('pay').textContent=pay.toLocaleString('th-TH')+' บาท';
+ el('discountBar').style.width=d+'%';el('payBar').style.width=(100-d)+'%';
+ el('percentHint').textContent='คำนวณแล้ว: '+p+' − '+saving+' = '+pay+' บาท';
+}
+el('price').addEventListener('input',updatePercent);el('discount').addEventListener('input',updatePercent);updatePercent();
+
+const answers={q1:'b',q2:'b',q3:'a'};
+const explanations={
+ q1:{right:'หารทั้ง 4 และ 6 ด้วย 2 ได้อัตราส่วนอย่างต่ำ 2 : 3',wrong:'อัตราส่วนอย่างต่ำต้องหารทั้งสองจำนวนด้วยตัวหารร่วมมาก คือ 2 จึงได้ 2 : 3'},
+ q2:{right:'คูณไขว้ได้ 3 × 10 = 5 × 6 = 30 ดังนั้นจำนวนที่หายไปคือ 10',wrong:'ให้จำนวนที่หายไปเป็น x จะได้ 3x = 5 × 6 = 30 ดังนั้น x = 10'},
+ q3:{right:'ส่วนลด 25% ของ 800 คือ 200 บาท จึงจ่าย 800 − 200 = 600 บาท',wrong:'ส่วนลดคือ 800 × 25/100 = 200 บาท เมื่อนำไปลบจากราคาเดิมจึงเหลือ 600 บาท'}
+};
+el('quizForm').addEventListener('submit',function(event){
+ event.preventDefault();let score=0,answered=0;
+ Object.keys(answers).forEach((q,index)=>{
+  const selected=document.querySelector('input[name="'+q+'"]:checked');
+  const box=el('f'+(index+1));box.className='feedback';
+  if(!selected){box.classList.add('bad');box.textContent='กรุณาเลือกคำตอบข้อนี้';}
+  else{
+   answered++;const correct=selected.value===answers[q];
+   if(correct)score++;
+   box.classList.add(correct?'good':'bad');box.textContent=(correct?'✓ ':'✗ ')+explanations[q][correct?'right':'wrong'];
+  }
+ });
+ el('score').textContent='ได้ '+score+' / 3 คะแนน'+(answered<3?' (ตอบแล้ว '+answered+' ข้อ)':'');
+});
+el('quizForm').addEventListener('reset',function(){
+ window.setTimeout(()=>{['f1','f2','f3'].forEach(id=>{el(id).className='feedback';el(id).textContent='';});el('score').textContent='';},0);
+});
+})();
+</script>
+</body>
+</html>
